@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Увеличение картинок при наведении</title>
+  <style>
+    body {
+      background-color: #00FF00; /* Неоново-зеленый цвет фона */
+    }
+
+    .image-container {
+      display: inline-block;
+      position: relative;
+    }
+
+    .image-container img {
+      transition: transform 0.3s ease;
+      width: 300px; /* Задайте желаемую ширину */
+      height: auto; /* Автоматически рассчитайте высоту, чтобы сохранить пропорции */
+    }
+
+    .image-container:hover img {
+      transform: scale(1.2);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="https://i.pinimg.com/474x/1d/be/ca/1dbeca7a1c1b8f87d3b09f05301f7b82.jpg" alt="Image 1">
+  </div>
+ <script>
+    const imageContainers = document.querySelectorAll('.image-container');
+
+    imageContainers.forEach(container => {
+      const img = container.querySelector('img');
+      let originalTransform = null;
+
+      container.addEventListener('mouseenter', () => {
+        originalTransform = img.style.transform;
+        img.style.transform = 'scale(1.2)';
+      });
+
+      container.addEventListener('mouseleave', () => {
+        img.style.transform = originalTransform;
+      });
+    });
+  </script>
+</body>
+</html>
